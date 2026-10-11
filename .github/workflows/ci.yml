@@ -1,0 +1,18 @@
+﻿name: Factory E2E Staging CI
+on:
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate version.js format
+        run: |
+          node -e "
+            const fs=require('fs');
+            const src=fs.readFileSync('version.js','utf8');
+            if (!/E2E_VERSION=\{/.test(src)) { console.error('BAD version.js'); process.exit(1); }
+            console.log('version.js OK');
+          "
+      - name: Build check
+        run: test -f index.html && test -f version.js && echo BUILD_OK
