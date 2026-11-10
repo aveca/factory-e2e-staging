@@ -1,2 +1,4 @@
-// Validation minimale pour job job-issue77-mwankc0l
-export const validate = (o) => typeof o.maxDim === 'number' && o.maxDim > 0 && typeof o.quality === 'number' && o.quality >= 0 && o.quality <= 1
+// Validation minimale pour job staging-test
+export const validate = (options) => {
+  return typeof options.maxDim === 'number' && options.maxDim > 0 && typeof options.quality === 'number' && options.quality >= 0 && options.quality <= 1
+}
